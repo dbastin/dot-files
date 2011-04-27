@@ -1,1 +1,7 @@
 --type-set=scala=.scala
+--type-set=cassius=.cassius
+--type-set=julius=.julius
+--type-set=hamlet=.hamlet
+--type-set=haml=.haml
+--type-set=erb=.erb
+

@@ -3,6 +3,7 @@ export PATH="/Library/PostgreSQL8/bin/:$PATH"
 export PATH="/usr/local/mysql/bin/:$PATH"
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=~/bin:~/.cabal/bin:$PATH
+export PATH=~/Library/Haskell/bin:$PATH
 export PATH=/opt/iphone/bin:$PATH
 export PATH=/opt/scala/bin:$PATH
 export PATH=~/.gem/ruby/1.8/bin:$PATH
@@ -25,12 +26,12 @@ smiley_status() {
   fi
 }
 
-export PS1='\w $(__git_ps1 " \[${COLOR_RED}\](%s$(evil_git_dirty))\[${COLOR_NC}\]")\n$(echo -ne $SMILEY) '
+export PS1='\[\033[37m\]\w\[\033[1m\] $(__git_ps1 " \[${COLOR_RED}\]%s$(evil_git_dirty)\[\033[1m\]")\n$(echo -ne $SMILEY) '
 export LESS="-R"
 export TERM=xterm-color
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 export CLICOLOR=1
-export EDITOR='~/bin/mate -w'
+export EDITOR='~/bin/mvim -f'
 export GIT_EDITOR=$EDITOR
 export VISUAL=$EDITOR``
 export JAVA_OPTS="-Dfile.encoding=UTF-8"
@@ -47,11 +48,7 @@ function evil_git_dirty {
   [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo " *"
 }
 
-
 export PROMPT_COMMAND='smiley_status'
-#export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*} ${PWD}"; echo -ne "\007"; verify_not_alias' 
-
-#export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*} ${PWD}"; echo -ne "\007"'
 
 # readline settings
 bind "set completion-ignore-case on" 
@@ -63,9 +60,12 @@ if [ -f /opt/local/etc/bash_completion ]; then
     . /opt/local/etc/bash_completion
 fi
 
-. /usr/local/etc/bash_completion.d/git-completion.bash
+. /usr/local/git/contrib/completion/git-completion.bash 
 
 # history (bigger size, no duplicates, always append):
 export HISTCONTROL=erasedups
 export HISTSIZE=10000
 shopt -s histappend
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+

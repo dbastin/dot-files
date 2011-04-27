@@ -7,9 +7,29 @@ alias ducks='du -cks * | sort -rn|head -11' # Lists the size of all the folders$
 alias top='top -o cpu'
 alias systail='tail -f /var/log/system.log'
 
-function h() {
-  hoogle --color --count=30 ${1} 
+alias intellij='open -b com.jetbrains.intellij'
+alias rubymine='open -b com.jetbrains.rubymine'
+
+alias h='hoogle -n 20 --colour'
+alias hdoc_index=''
+
+function hdoc() {
+  if [ $1 ]
+  then
+    shopt -s nocaseglob
+    DOCS=`find ~/Library/Haskell/ghc-*/lib/${1}*/doc/html/index.html 2> /dev/null`
+    shopt -u nocaseglob
+    if [ -z $DOCS ]
+    then
+      echo "no docs"
+    else
+      open $DOCS
+    fi
+  else
+    open ~/Library/Haskell/doc/index.html
+  fi
 }
+
 
 # useful command to find what you should be aliasing:
 alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"
@@ -28,6 +48,9 @@ echo UPDATE tablename SET column1 = value1 WHERE condition
 "
 
 alias foo="echo \$2 \$1"
+
+ 
+alias report_success="if [$? -eq 0]; then say \"cool cool cool\"; else say \"oh dear\"; fi"
 
 function to_ipod() {
    VAL="HandBrakeCLI -i ${1} -o ${1}.mp4 --preset=\"iPhone & iPod Touch\""
@@ -55,9 +78,10 @@ alias gco='git checkout'
 alias gitx="open -b nl.frim.GitX"
 alias gm='git merge --no-ff'
 alias gfo='git fetch origin'
-alias grb='git rebase'
 alias gdi='git diff --staged'
 alias gd='git diff'
+
+alias gsp='git smart-pull'
 
 alias m=mvim
 
@@ -83,6 +107,32 @@ function go () {
   fi
 }
 
+function bo () {
+  STARTS=`git branch | sed s/\*/\ / | sed s/^\ \ // | grep ^$1 | head -n 1`
+  CONTAINS=`git branch | sed s/\*/\ / | sed s/^\ \ // | grep $1 | head -n 1`
+  if [ ! -z $STARTS ]
+  then
+    git checkout $STARTS
+  else 
+    if [ ! -z $CONTAINS ]
+    then
+      git checkout $CONTAINS
+    else
+      echo "No branch found matching $1"
+    fi
+  fi
+}
+
 alias make_six='sed -i "" "s,<integer>5</integer>,<integer>6</integer>," Resources/Info.plist'
 alias make_six_qa='sed -i "" "s,<integer>5</integer>,<integer>6</integer>," Resources/Info-QA.plist'
 
+# Rails aliases
+alias sc=script/console
+alias sg=script/generate
+alias sd=script/destroy
+alias ss=script/server
+alias sgns="script/generate nifty_scaffold --rspec --haml"
+alias sdns="script/destroy nifty_scaffold --rspec --haml"
+alias db='mysql -u root oompf_development'
+ 
+alias hdocs="open ~/Library/Haskell/doc/index.html"
