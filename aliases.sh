@@ -63,7 +63,8 @@ alias gl='git pull'
 
 alias gst='git status -sb'
 alias glr='git pull --rebase'
-alias glg='git log --oneline --decorate'
+# alias glg='git log --oneline --decorate'
+alias glg='git lg'
 alias gsu='git submodule update'
 
 alias gp='git push'
@@ -82,6 +83,8 @@ alias gdi='git diff --staged'
 alias gd='git diff'
 
 alias gsp='git smart-pull'
+
+alias greview='git log --reverse -p production..master -- app db'
 
 alias m=mvim
 
@@ -136,3 +139,8 @@ alias sdns="script/destroy nifty_scaffold --rspec --haml"
 alias db='mysql -u root oompf_development'
  
 alias hdocs="open ~/Library/Haskell/doc/index.html"
+
+alias gok='pushd ~/.kit && git pull && popd'
+alias goku='gok && git pull && kit update'
+
+alias sr='screen -r'

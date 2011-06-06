@@ -3,9 +3,19 @@
   email = nkpart@gmail.com
 [merge]
   summary = true
-	tool = opendiff
+	tool = vimdiff
 [alias]
-	lg = log --graph --since='2 weeks ago' --pretty=format:'%Cblue%h%Creset %cr %Cgreen%an%Creset %s'
+	lg = log --graph --since='2 weeks ago'
+  l = log --graph --abbrev-commit --date=relative
+  st = status
+  ci = commit
+  co = checkout
+  amend = commit --amend
+  head = !git l -1
+  r = !git l -20
+  ra = !git r --all
+[format]
+    pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
 [apply]
   whitespace = nowarn
 [color]
@@ -13,11 +23,7 @@
   diff = auto
   status = auto
   ui = auto
-[github]
-	user = nkpart
-	token = f184d217a0855563622fa1ed3818fef5
 [core]
-  editor = mvim -f
   excludesfile = ~/.gitignore
 	whitespace = fix
 [default]
