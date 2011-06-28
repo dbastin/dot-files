@@ -8,6 +8,12 @@ export PATH=~/.gem/ruby/1.8/bin:$PATH
 export APPENGINE_SDK_HOME=/opt/appengine-java-sdk-1.3.4
 
 smiley_status() {
+  j=`jobs`
+  if [ -z "$j" ]; then
+    export JOB_STATUS=" "
+  else
+    export JOB_STATUS="!"
+  fi
   if [ $? = 0 ]; then
     export SMILEY="\001\033[0;32m\002⚡\001\033[0m\002"
   else
@@ -15,9 +21,8 @@ smiley_status() {
   fi
 }
 
-export PS1='\[\033[37m\]\w\[\033[1m\] $(__git_ps1 " \[${COLOR_RED}\]%s$(evil_git_dirty)\[\033[1m\]")\n$(echo -ne $SMILEY) '
+export PS1='\[\033[37m\]\w\[\033[1m\] ${JOB_STATUS} $(__git_ps1 " \[${COLOR_RED}\]%s$(evil_git_dirty)\[\033[1m\]")\n$(echo -ne $SMILEY) '
 export LESS="-R"
-export TERM=xterm-color
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 export CLICOLOR=1
 export EDITOR=vim

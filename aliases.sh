@@ -6,6 +6,7 @@ alias ...='.. ..'
 alias ducks='du -cks * | sort -rn|head -11' # Lists the size of all the folders$
 alias top='top -o cpu'
 alias systail='tail -f /var/log/system.log'
+alias vimrc="vim ~/.vimrc"
 
 alias intellij='open -b com.jetbrains.intellij'
 alias rubymine='open -b com.jetbrains.rubymine'
@@ -99,7 +100,7 @@ alias days="git log --since='2 month ago' --author=nkpart | grep Date | awk '{pr
 alias my_work="git log --since='2 month ago' --date=short --author=nkpart --pretty=format:\"%ad\" | uniq"
 
 function go () {
-  PROJECT_DIRS="$HOME/p/mogen/projects $HOME/p/mogen/projects/oomph-clients $HOME/railscamp $HOME/p/mogen/kits $HOME/p"
+  PROJECT_DIRS="$HOME/p/mogen/projects $HOME/p/mogen/projects/oomph-build/mags $HOME/railscamp $HOME/p/mogen/kits $HOME/p"
   TEST1=`find $PROJECT_DIRS -maxdepth 1 | grep \/$1 | head -n 1`
   TEST2=`find $PROJECT_DIRS -maxdepth 1 | grep \/[^\/]*$1[^\/]* | head -n 1`
   if [ ! -n $TEST1 ]
