@@ -8,16 +8,16 @@ export PATH=~/.gem/ruby/1.8/bin:$PATH
 export APPENGINE_SDK_HOME=/opt/appengine-java-sdk-1.3.4
 
 smiley_status() {
+  if [ $? = 0 ]; then
+    export SMILEY="\001\033[0;32m\002⚡\001\033[0m\002"
+  else
+    export SMILEY="\001\033[31m\002☢\001\033[0m\002"
+  fi
   j=`jobs`
   if [ -z "$j" ]; then
     export JOB_STATUS=" "
   else
     export JOB_STATUS="!"
-  fi
-  if [ $? = 0 ]; then
-    export SMILEY="\001\033[0;32m\002⚡\001\033[0m\002"
-  else
-    export SMILEY="\001\033[31m\002☢\001\033[0m\002"
   fi
 }
 
