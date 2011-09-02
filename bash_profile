@@ -18,3 +18,6 @@ alias colorslist="set | egrep 'COLOR_\w*'"  # lists all the colors
 
 source ~/.bashrc
 source ~/.aliases.sh
+if [ -f ~/.work_aliases.sh ]; then
+  source ~/.work_aliases.sh
+fi

@@ -5,8 +5,6 @@ export PATH=~/Library/Haskell/bin:$PATH
 export PATH=~/.gem/ruby/1.8/bin:$PATH
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
 
-export APPENGINE_SDK_HOME=/opt/appengine-java-sdk-1.3.4
-
 smiley_status() {
   if [ $? = 0 ]; then
     export SMILEY="\001\033[0;32m\002⚡\001\033[0m\002"
@@ -22,6 +20,7 @@ smiley_status() {
 }
 
 export PS1='\[\033[37m\]\w\[\033[1m\] ${JOB_STATUS} $(__git_ps1 " \[${COLOR_RED}\]%s$(evil_git_dirty)\[\033[1m\]")\n$(echo -ne $SMILEY) '
+export PS1='\w ${JOB_STATUS} $(__git_ps1 " \[${COLOR_RED}\]%s$(evil_git_dirty)\[\033[1m\]")\n$(echo -ne $SMILEY) '
 export LESS="-R"
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 export CLICOLOR=1
@@ -30,12 +29,6 @@ export GIT_EDITOR=$EDITOR
 export VISUAL=$EDITOR``
 export JAVA_OPTS="-Dfile.encoding=UTF-8"
 export RUBYOPT="rubygems"
-
-verify_not_alias() {
-	last=`history 1`
-	aliases=`alias`
-	ruby ~/p/dot-files/verify.rb "$aliases" "$last"
-}
 
 function evil_git_dirty {
   [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo " *"
