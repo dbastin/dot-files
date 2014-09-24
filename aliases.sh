@@ -1,5 +1,6 @@
 alias ls='ls -G'
 alias ll='ls -lh'
+alias lla='ls -lah'
 alias ..='cd ..;'
 alias ...='.. ..'
 alias ducks='du -cks * | sort -rn|head -11' # Lists the size of all the folders$

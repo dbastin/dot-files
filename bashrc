@@ -46,7 +46,7 @@ if [ -f /opt/local/etc/bash_completion ]; then
     . /opt/local/etc/bash_completion
 fi
 
-. /usr/local/git/contrib/completion/git-completion.bash 
+. ~/.git-prompt.sh 
 
 # history (bigger size, no duplicates, always append):
 export HISTCONTROL=erasedups
