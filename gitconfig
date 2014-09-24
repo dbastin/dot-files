@@ -1,6 +1,6 @@
 [user]
-	name = Nick Partridge
-  email = nkpart@gmail.com
+	name = Damien Bastin
+  email = damien@trinetcloud.com
 [merge]
   summary = true
 	tool = vimdiff
@@ -22,7 +22,7 @@
   branch = auto
   diff = auto
   status = auto
-  ui = auto
+	ui = always
 [core]
   excludesfile = ~/.gitignore
 	whitespace = fix
